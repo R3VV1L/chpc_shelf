@@ -10,6 +10,7 @@ import Title from '../../components/UI/Title'
 import { observer } from 'mobx-react-lite'
 import { useContext, useEffect } from 'react'
 import { Context } from '../../main'
+
 export default function About() {
     const { store } = useContext(Context)
     return (
@@ -18,6 +19,7 @@ export default function About() {
 
 
                 <Container className='d-flex align-items-center justify-content-center flex-column w-100 h-100'>
+                    {/* <div src=''></div> */}
 
                 </Container>
             </Background >

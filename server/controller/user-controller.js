@@ -53,6 +53,23 @@ class UserController {
     }
   }
 
+  async ChangePassword(req, res, next) {
+    try {
+
+      const { email, OldPassword, NewPassword } = req.body
+
+      const userData = await userService.ChangePassword(
+        email,
+        OldPassword,
+        NewPassword
+      )
+
+      return res.json(userData)
+    } catch (err) {
+      next(err)
+    }
+  }
+
   async logout(req, res, next) {
     try {
       const { refreshToken } = req.cookies

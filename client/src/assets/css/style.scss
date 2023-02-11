@@ -21,6 +21,424 @@
     /* padding вокруг плашки */
 }
 
+
+
+
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.vh-90 {
+    height: 90vh;
+}
+
+.vw-80 {
+    width: 80vw;
+}
+
+.Logo {
+    background-size: cover;
+    margin-bottom: 20px;
+    height: 100px;
+    width: 100px;
+    opacity: 0.7;
+}
+
+.Content {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+}
+
+.Content__left {
+    color: rgb(255, 255, 255);
+    padding-right: 40px;
+    width: 50%;
+}
+
+.Content__right {
+    color: rgb(255, 255, 255);
+    margin-left: 20px !important;
+    width: 49% !important;
+
+    &__Input_group {
+        position: relative;
+        width: 100%;
+        margin-bottom: 3px;
+
+        &__checker {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
+}
+
+.Content__divider {
+    display: flex;
+    justify-content: center;
+    margin: 0px 40px;
+}
+
+.Content_main {
+    color: rgb(255, 255, 255);
+    align-items: center;
+    width: 50% !important;
+    height: 100vh;
+    justify-content: center !important;
+    align-content: center;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 0 !important;
+    color: black;
+    text-shadow: 5px 5px 10px rgb(68, 68, 239);
+}
+
+.Divider {
+    border-radius: 35px;
+    display: block;
+    width: 5px;
+    height: 70%;
+    background-color: rgb(255, 255, 255);
+}
+
+.Title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 50px;
+    text-transform: uppercase;
+}
+
+/*Кнопка в различных состояниях*/
+.CHPButton {
+    margin-top: 20px !important;
+    padding: 8px 20px;
+    box-shadow: 0px 5px 20px rgb(0 0 0 / 50%);
+    border: none;
+    background: #3E83C3;
+    border-radius: 50px;
+    color: azure;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    font-size: 20px !important;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.CHPButton:disabled {
+    background-color: #434d57;
+    cursor: default;
+    color: #707070;
+}
+
+.CHPButton:disabled:hover {
+    background-color: #434d57;
+    cursor: default;
+    color: #707070;
+}
+
+.CHPButton:hover {
+    background-color: #2d5e8b;
+}
+
+
+/*Инпуты*/
+.CHPInput {
+    margin-top: 25px;
+    width: 100%;
+    height: 45px;
+    background: linear-gradient(to right, rgb(38, 38, 38), rgb(90, 90, 90));
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 22px;
+    border: none;
+    color: azure;
+    padding-left: 20px;
+}
+
+.CHPInput::placeholder {
+    color: #acacac;
+}
+
+@keyframes Twinkle {
+    0% {
+        box-shadow: 0px 15px 30px rgba(11, 52, 255, 0.8);
+    }
+
+    50% {
+        box-shadow: 0px 15px 30px rgba(28, 49, 150, 0.8);
+    }
+
+    100% {
+        box-shadow: 0px 15px 30px rgba(11, 52, 255, 0.8);
+    }
+}
+
+.CHPInput:focus {
+    animation: Twinkle 10s infinite linear;
+    animation-duration: 2s, 4s;
+    border: 3px;
+    border-color: none;
+    outline: none;
+}
+
+.CHPInput:hover {
+    background: linear-gradient(to right, rgb(40, 40, 40), rgb(75, 75, 75));
+}
+
+.Message {
+    top: 0px;
+    position: absolute;
+    background-color: transparent;
+    color: red;
+    border-color: red;
+    border: 3px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    z-index: 50;
+    text-shadow: 0px 0px 3px black !important;
+}
+
+/*Чекер*/
+.form-check-input {
+    margin-top: 0 !important;
+    height: 20px !important;
+    width: 20px !important;
+    border: none !important;
+}
+
+
+
+.form-check-input:focus {
+    height: 20px !important;
+    width: 20px !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.form-check-input:hover {
+    background: rgba(7, 41, 209, 0.8);
+    cursor: pointer;
+}
+
+
+.form-check-label {
+    padding-left: 10px;
+    color: aliceblue;
+}
+
+/*Header*/
+.Header {
+    background-color: rgb(42, 42, 42);
+    box-sizing: border-box;
+    margin: 0px 0px !important;
+    padding: 0px 0px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: sticky;
+    top: 0;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: aliceblue;
+    border: 2px solid rgb(70, 70, 70);
+    z-index: 100;
+
+
+    &__Title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 57px;
+    }
+
+    &__Navbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+
+        &__NavBTN {
+            padding: 5px 10px;
+            height: 60px;
+            background-color: transparent;
+            color: rgb(212, 120, 0);
+            border: none;
+            border-bottom: 5px solid rgb(110, 1, 134)
+        }
+
+        &__NavBTN:hover {
+            background: linear-gradient(to top, rgba(118, 2, 144, 0.7), transparent);
+        }
+
+        &__ProfBTN {
+            display: flex;
+            padding: 5px 5px;
+            height: 60px;
+            width: 150px;
+            background-color: transparent;
+            border: none;
+            align-items: center;
+            justify-content: center;
+
+            .ProfIMG {
+                height: 36px;
+                width: 36px;
+                box-sizing: border-box;
+                border-radius: 50px;
+                background-image: url("../images/UserAvatar.svg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
+
+.offcanvas {
+    background-color: rgb(42, 42, 42) !important;
+    --bs-offcanvas-width: 300px !important;
+}
+
+.offcanvas-body {
+    display: flex !important;
+    justify-content: flex-start !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    .SideBTN {
+        width: 200px;
+        background-color: transparent;
+        font-size: 22px;
+        color: #8b8b8b;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border: none;
+    }
+
+
+}
+
+.btn-close {
+    background-image: url("../images/CloseBTN.svg") !important;
+    background-size: cover !important;
+    height: 15px !important;
+    width: 15px !important;
+    padding-right: 10px !important;
+}
+
+
+
+.MainForm__Body {
+    position: absolute !important;
+    margin-top: 60px !important;
+    margin-bottom: 60px !important;
+}
+
+
+.ProfileSettings {
+    padding-bottom: 100px;
+
+
+
+    &__Row {
+        margin-top: 30px !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+
+
+
+        &_Avatar {
+            margin-top: 30px !important;
+            display: flex !important;
+            justify-content: center !important;
+            flex-direction: row !important;
+
+            &__AvatarIMG {
+                height: 200px;
+                width: 200px !important;
+                color: #3E83C3;
+                background-color: #434d57;
+            }
+
+            &__AvatarSettings {
+                height: 200px;
+                width: 350px !important;
+                color: #3E83C3;
+                background-color: #00509f;
+                margin-left: 40px;
+            }
+        }
+
+
+        &__Textarea_label {
+            margin-bottom: 5px;
+        }
+
+        &__AboutMeText {
+            width: 590px !important;
+            max-width: 590px !important;
+            height: 140px;
+            min-height: 35px !important;
+            max-height: 140px !important;
+            background-color: #666666;
+            color: aliceblue;
+        }
+
+        &_password {
+            margin-top: 30px !important;
+            display: flex !important;
+            justify-content: center !important;
+            flex-direction: column !important;
+
+            &__Input_group {
+                width: 500px !important;
+
+                .Message {
+                    position: relative !important;
+                    top: 15px;
+                    line-height: 0px;
+
+                }
+
+
+            }
+
+
+        }
+    }
+
+
+}
+
+
+
+
+.Footer {
+    background-color: rgb(8, 8, 8);
+    box-sizing: border-box;
+    margin: 0px 0px !important;
+    padding: 0px 0px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative;
+    bottom: 0px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: aliceblue;
+    border: 3px double rgb(70, 70, 70);
+}
+
 @media only screen and (min-width:995px) {
 
 
@@ -30,6 +448,10 @@
 
     .vh-90 {
         height: 90vh;
+    }
+
+    .vw-80 {
+        width: 80vw;
     }
 
     .Logo {
@@ -111,7 +533,7 @@
 
     /*Кнопка в различных состояниях*/
     .CHPButton {
-        margin-top: 20px;
+        margin-top: 20px !important;
         padding: 8px 20px;
         box-shadow: 0px 5px 20px rgb(0 0 0 / 50%);
         border: none;
@@ -185,7 +607,7 @@
         background: linear-gradient(to right, rgb(40, 40, 40), rgb(75, 75, 75));
     }
 
-    .ErrorMsg {
+    .Message {
         top: 0px;
         position: absolute;
         background-color: transparent;
@@ -246,8 +668,9 @@
         justify-content: space-between;
         align-items: center;
         color: aliceblue;
-        border: 3px double rgb(70, 70, 70);
+        border: 2px solid rgb(70, 70, 70);
         z-index: 100;
+
 
         &__Title {
             display: flex;
@@ -260,8 +683,6 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-
-
 
 
             &__NavBTN {
@@ -310,6 +731,18 @@
         justify-content: flex-start !important;
         flex-direction: column !important;
         align-items: center !important;
+
+        .SideBTN {
+            width: 200px;
+            background-color: transparent;
+            font-size: 22px;
+            color: #8b8b8b;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border: none;
+        }
+
+
     }
 
     .btn-close {
@@ -320,11 +753,92 @@
         padding-right: 10px !important;
     }
 
+
+
     .MainForm__Body {
         position: absolute !important;
         margin-top: 60px !important;
         margin-bottom: 60px !important;
     }
+
+
+    .ProfileSettings {
+        padding-bottom: 100px;
+
+
+
+        &__Row {
+            margin-top: 30px !important;
+            display: flex !important;
+            justify-content: center !important;
+            flex-direction: column !important;
+
+
+
+            &_Avatar {
+                margin-top: 30px !important;
+                display: flex !important;
+                justify-content: center !important;
+                flex-direction: row !important;
+
+                &__AvatarIMG {
+                    height: 200px;
+                    width: 200px !important;
+                    color: #3E83C3;
+                    background-color: #434d57;
+                }
+
+                &__AvatarSettings {
+                    height: 200px;
+                    width: 350px !important;
+                    color: #3E83C3;
+                    background-color: #00509f;
+                    margin-left: 40px;
+                }
+            }
+
+
+            &__Textarea_label {
+                margin-bottom: 5px;
+            }
+
+            &__AboutMeText {
+                width: 590px !important;
+                max-width: 590px !important;
+                height: 140px;
+                min-height: 35px !important;
+                max-height: 140px !important;
+                background-color: #666666;
+                color: aliceblue;
+            }
+
+            &_password {
+                margin-top: 30px !important;
+                display: flex !important;
+                justify-content: center !important;
+                flex-direction: column !important;
+
+                &__Input_group {
+                    width: 500px !important;
+
+                    .Message {
+                        position: relative !important;
+                        top: 15px;
+                        line-height: 0px;
+
+                    }
+
+
+                }
+
+
+            }
+        }
+
+
+    }
+
+
 
     .Footer {
         background-color: rgb(8, 8, 8);
@@ -335,7 +849,7 @@
         max-width: 100% !important;
         position: relative;
         bottom: 0px;
-        height: 200px;
+        height: 100px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -437,7 +951,7 @@
 
     /*Кнопка в различных состояниях*/
     .CHPButton {
-        margin-top: 20px;
+        margin-top: 20px !important;
         padding: 8px 20px;
         box-shadow: 0px 5px 20px rgb(0 0 0 / 50%);
         border: none;
@@ -511,7 +1025,7 @@
         background: linear-gradient(to right, rgb(40, 40, 40), rgb(75, 75, 75));
     }
 
-    .ErrorMsg {
+    .Message {
         top: 0px;
         position: absolute;
         background-color: transparent;
@@ -782,7 +1296,7 @@
 
     /*Кнопка в различных состояниях*/
     .CHPButton {
-        margin-top: 20px;
+        margin-top: 20px !important;
         padding: 8px 20px;
         box-shadow: 0px 5px 20px rgb(0 0 0 / 50%);
         border: none;
@@ -857,7 +1371,7 @@
         background: linear-gradient(to right, rgb(40, 40, 40), rgb(75, 75, 75));
     }
 
-    .ErrorMsg {
+    .Message {
         top: 0px;
         position: absolute;
         background-color: transparent;
@@ -1130,7 +1644,7 @@
 
     /*Кнопка в различных состояниях*/
     .CHPButton {
-        margin-top: 20px;
+        margin-top: 20px !important;
         padding: 8px 20px;
         box-shadow: 0px 5px 20px rgb(0 0 0 / 50%);
         border: none;
@@ -1205,7 +1719,7 @@
         background: linear-gradient(to right, rgb(40, 40, 40), rgb(75, 75, 75));
     }
 
-    .ErrorMsg {
+    .Message {
         top: 0px;
         position: absolute;
         background-color: transparent;
@@ -1479,7 +1993,7 @@
 
     /*Кнопка в различных состояниях*/
     .CHPButton {
-        margin-top: 20px;
+        margin-top: 20px !important;
         padding: 8px 20px;
         box-shadow: 0px 5px 20px rgb(0 0 0 / 50%);
         border: none;
@@ -1554,7 +2068,7 @@
         background: linear-gradient(to right, rgb(40, 40, 40), rgb(75, 75, 75));
     }
 
-    .ErrorMsg {
+    .Message {
         top: 0px;
         position: absolute;
         background-color: transparent;
@@ -1698,7 +2212,7 @@
     .Footer {
         background-color: rgb(8, 8, 8);
         box-sizing: border-box;
-        margin: 0px 0px !important;
+        margin-top: 10px !important;
         padding: 0px 0px !important;
         width: 100% !important;
         max-width: 100% !important;

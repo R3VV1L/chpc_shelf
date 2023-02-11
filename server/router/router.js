@@ -10,10 +10,8 @@ const router = express.Router()
  * @param {
  * email,
  * password,
- * last_name,
- * first_name,
- * patronymic,
- * age,
+ * nickname,
+
  * }
  */
 
@@ -35,6 +33,12 @@ router.get('/activate/:link', UserController.activate)
  */
 
 router.post('/login', UserController.login)
+
+/**
+ * TODO: функция активации пользователя
+ */
+
+router.post('/changepassword', UserController.ChangePassword)
 
 /**
  * TODO: выход из аккаунта

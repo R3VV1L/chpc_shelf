@@ -1,6 +1,7 @@
 import React, { Component, useContext, useState } from 'react'
 import { Container, Offcanvas, NavDropdown } from 'react-bootstrap'
 import CHPButton from '../UI/CHPButton'
+import SideBTN from '../UI/SideBTN'
 import Logo from '../UI/Logo'
 import Title from '../UI/Title'
 import LogoIMG from "../../assets/images/Logo3.png"
@@ -18,6 +19,7 @@ function Header() {
     const handleShow = () => setShow(true);
 
     const { store } = useContext(Context)
+    const Name = store.user.email
     if (store.isLoading) {
         return <div className="d-flex justify-content-center">
             <div className="spinner-border text-primary" role="status">
@@ -40,9 +42,9 @@ function Header() {
 
 
                 <button className='Header__Navbar__ProfBTN' onClick={handleShow} ><div className='ProfIMG' /></button>
-                <Offcanvas show={show} onHide={handleClose} placement='end' backdrop="static">
+                <Offcanvas show={show} onHide={handleClose} placement='end'>
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title>Profile</Offcanvas.Title>
+                        <Offcanvas.Title>{Name}</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -56,6 +58,8 @@ function Header() {
                                 Separated link
                             </NavDropdown.Item>
                         </NavDropdown> */}
+
+                        <Link to='/profile/settings'><SideBTN value={"Profile settings"} type="button" /></Link>
                         <Link to='/authorization'><CHPButton className={style.LogOutBTN} value={"Log Out"} type="button" onClick={() => { store.logout() }} /></Link>
                     </Offcanvas.Body>
                 </Offcanvas>

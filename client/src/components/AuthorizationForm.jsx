@@ -11,6 +11,7 @@ import CHPInput from "./UI/CHPInput";
 import { Link, redirect } from "react-router-dom";
 import { Context } from "../main";
 import { observer } from "mobx-react-lite";
+import MSG from "./UI/MSG";
 
 function AuthorizationForm() {
 
@@ -30,12 +31,13 @@ function AuthorizationForm() {
     const [Login_Error_Type, setLogin_Error_Type] = useState("");
     const [Password_Error_Type, setPassword_Error_Type] = useState("");
 
-
+    const [MSGtype, setMSGtype] = useState("error");
     /* массив для хранения кодов ошибок полей */
     let Errors = ["", ""]
 
 
     function DataCheck() {
+        setMSGtype("error")
         /* заполнение массива значениями ошибок */
         Errors[0] = LoginCheck(Login)
         Errors[1] = PasswordCheck(Password)
@@ -82,13 +84,13 @@ function AuthorizationForm() {
 
             {/* поля ввода ника и его ошибки */}
             <div className="Content__right__Input_group">
-                <div className="ErrorMsg">{Login_Error_Type}</div>
+                <MSG type={MSGtype}>{Login_Error_Type}</MSG>
                 <CHPInput value={Login} name="Login" type='text' placeholder={"Login is your email"} maxLength={40} onChange={(event) => setLogin(event.target.value)} />
             </div>
 
             {/* поля ввода пароля и его ошибки */}
             <div className="Content__right__Input_group">
-                <div className="ErrorMsg">{Password_Error_Type}</div>
+                <MSG type={MSGtype}>{Password_Error_Type}</MSG>
                 <CHPInput value={Password} name="Password" type='password' placeholder={"Password"} maxLength={32} onChange={(event) => setPassword(event.target.value)} />
             </div>
 

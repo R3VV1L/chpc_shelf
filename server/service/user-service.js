@@ -71,6 +71,61 @@ class UserService {
     }
   }
 
+
+  async ChangePassword(email, OldPassword, NewPassword) {
+    const user = await UserModel.findOne({ where: { email: email } })
+
+    const isPassEquals = await bcrypt.compare(OldPassword, user.password)
+    if (!isPassEquals) {
+      throw ApiError.BedRequest('Не верный пароль')
+    }
+
+    const hashPassword = await bcrypt.hash(NewPassword, 3)
+
+
+    try {
+      const result = await UserModel.update(
+        { password: hashPassword },
+        { where: { email: email } }
+      )
+    } catch (err) {
+      throw ApiError.BedRequest(err)
+    }
+
+    // await UserModel.update({
+
+    //   password: hashPassword
+
+    // })
+
+    // const activationLink = uuidv4()
+
+    // const user = await UserModel.create({
+    //   email,
+    //   nickname,
+    //   password: hashPassword,
+    //   activationLink,
+    // })
+
+    // await mailService.sendActivationMail(
+    //   email,
+    //   `${process.env.API_URL}/api/activate/${activationLink}`,
+    // )
+
+    // const userDto = new UserDto(user)
+    // const tokens = tokenService.generateTokens({ ...userDto })
+
+    // await tokenService.saveToken(userDto.id, tokens.refreshToken)
+
+    // throw ApiError.BedRequest(
+    //   'Перейдите в свой почтовый ящик и активируйте аккаунт',
+    // )
+  }
+
+
+
+
+
   async logout(refreshToken) {
     const token = await tokenService.removeToken(refreshToken)
     return token

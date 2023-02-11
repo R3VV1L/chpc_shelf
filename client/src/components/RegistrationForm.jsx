@@ -11,6 +11,7 @@ import CHPInput from "./UI/CHPInput";
 import { Link } from "react-router-dom";
 import { Context } from "../main";
 import { observer } from "mobx-react-lite";
+import MSG from "./UI/MSG";
 
 function RegistrationForm() {
 
@@ -36,7 +37,7 @@ function RegistrationForm() {
     const [Check_password_Error_Type, setCheck_password_Error_Type] = useState("");
     /* состояние чекбокса политики и его изменение*/
     const [Checked, setCheck_status] = useState(false);
-
+    const [MSGtype, setMSGtype] = useState("error");
     function Checker() {
         if (Checked === false) {
             setCheck_status(true)
@@ -51,6 +52,7 @@ function RegistrationForm() {
     let Errors = ["", "", "", ""]
     /* проверка значений состояния полей и их изменения */
     function DataCheck() {
+        setMSGtype("error")
         /* заполнение массива значениями ошибок */
         Errors[0] = NicknameCheck(Nickname)
         Errors[1] = EmailCheck(Email)
@@ -122,22 +124,22 @@ function RegistrationForm() {
             {/* поля ввода */}
             {/* поля ввода ника и его ошибки */}
             <div className="Content__right__Input_group">
-                <div className="ErrorMsg">{Nickname_Error_Type}</div>
+                <MSG type={MSGtype}>{Nickname_Error_Type}</MSG>
                 <CHPInput value={Nickname} name="Nickname" type='text' placeholder={"Nickname"} maxLength={40} onChange={(event) => setNickname(event.target.value)} />
             </div>
             {/* поля ввода почты и его ошибки */}
             <div className="Content__right__Input_group">
-                <div className="ErrorMsg">{Email_Error_Type}</div>
+                <MSG type={MSGtype}>{Email_Error_Type}</MSG>
                 <CHPInput value={Email} name="Email" type='text' placeholder={"Email"} maxLength={32} onChange={(event) => setEmail(event.target.value)} />
             </div>
             {/* поля ввода пароля и его ошибки */}
             <div className="Content__right__Input_group">
-                <div className="ErrorMsg">{Password_Error_Type}</div>
+                <MSG type={MSGtype}>{Password_Error_Type}</MSG>
                 <CHPInput value={Password} name="Password" type='password' placeholder={"Password"} maxLength={32} onChange={(event) => setPassword(event.target.value)} />
             </div>
             {/* поля ввода повтора пароля и его ошибки */}
             <div className="Content__right__Input_group">
-                <div className="ErrorMsg">{Check_password_Error_Type}</div>
+                <MSG type={MSGtype}>{Check_password_Error_Type}</MSG>
                 <CHPInput value={Check_password} name="Check_password" type='password' placeholder={"Repeat the password"} maxLength={32} onChange={(event) => setCheck_password(event.target.value)} />
             </div>
             {/* чекбокс */}

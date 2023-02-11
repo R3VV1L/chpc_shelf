@@ -1,4 +1,5 @@
 import AuthService from '../services/AuthService'
+import UserService from '../services/UserService'
 import { makeAutoObservable } from 'mobx'
 import axios from 'axios'
 import { API_URL } from '../http'
@@ -82,6 +83,18 @@ export default class Store {
       console.log(err.response?.data?.message)
     } finally {
       this.setLoading(false)
+    }
+  }
+
+  async ChangePassword(email, OldPassword, NewPassword) {
+    this.setErrors(undefined)
+    try {
+      const response = await UserService.ChangePassword(email, OldPassword, NewPassword)
+      console.log(response)
+
+    } catch (err) {
+      this.setErrors(err)
+      console.error(err.response?.data?.message)
     }
   }
 }
