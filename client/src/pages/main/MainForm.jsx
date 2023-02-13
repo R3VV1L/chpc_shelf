@@ -30,6 +30,7 @@ function MainForm() {
         <div>
             <Header />
             <Routes>
+                <Route path="/authorization" element={<HomePage />}></Route>
                 <Route path="/home" element={<HomePage />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/profile/settings" element={<ProfileSettings />}></Route>
