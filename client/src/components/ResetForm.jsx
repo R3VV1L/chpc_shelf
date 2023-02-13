@@ -1,5 +1,5 @@
 import style from "../pages/authorization/Authorization.module.scss"
-import { LoginCheck, PasswordCheck } from '../pages/authorization/AuthorizationLogic.jsx'
+import { EmailCheck } from '../pages/registration/RegistrationLogic.jsx'
 import Avatar from '../assets/images/Avatar_Logo_UpScaled.png'
 import Logo from './UI/Logo'
 import { Button, Col, Row, Container, Form, FloatingLabel, Alert } from 'react-bootstrap';
@@ -13,7 +13,7 @@ import { Context } from "../main";
 import { observer } from "mobx-react-lite";
 import MSG from "./UI/MSG";
 
-function AuthorizationForm() {
+function ResetForm() {
 
     const { store } = useContext(Context)
     if (store.isLoading) {
@@ -24,51 +24,40 @@ function AuthorizationForm() {
         </div>
     }
     /*Состояния для хранения значений полей ввода */
-    const [Login, setLogin] = useState("");
-    const [Password, setPassword] = useState("");
+    const [Email, setEmail] = useState("");
+
 
     /* Наполнение ошибок полей ввода */
-    const [Login_Error_Type, setLogin_Error_Type] = useState("");
-    const [Password_Error_Type, setPassword_Error_Type] = useState("");
+    const [Email_Error_Type, setEmail_Error_Type] = useState("");
+
 
     const [MSGtype, setMSGtype] = useState("error");
     /* массив для хранения кодов ошибок полей */
-    let Errors = ["", ""]
 
 
     function DataCheck() {
         setMSGtype("error")
         /* заполнение массива значениями ошибок */
-        Errors[0] = LoginCheck(Login)
-        Errors[1] = PasswordCheck(Password)
+
 
         /* проверка поля Login на тип ошибки и изменение его состояния */
 
-        setLogin_Error_Type(LoginCheck(Login));
+        setEmail_Error_Type(EmailCheck(Email));
         /* проверка поля Password на тип ошибки и изменение его состояния */
-        setPassword_Error_Type(PasswordCheck(Password));
 
         /* проверка всех полей на ошибки и обнуление из состояния в случае их отсутствия */
-        if (Errors[0] === "") {
-            setLogin_Error_Type("");
-        }
-
-        if (Errors[1] === "") {
-            setPassword_Error_Type("");
-        }
-
-        /* проверка соответствия всех полей и вызов функции отправки данных */
-        if (Errors[0] === "" && Errors[1] === "") {
-
+        if (EmailCheck(Email) === "") {
+            setEmail_Error_Type("");
             async function response() {
-                await store.login(Login, Password)
+                await store.ResetPassword(Email)
                 console.log(store?.errors?.response?.data?.message);
-                setLogin_Error_Type(store?.errors?.response?.data?.message)
+                setMSGtype('success')
+                setEmail_Error_Type(store?.errors?.response?.data?.message)
             }
 
             response()
-
         }
+
 
     }
 
@@ -79,27 +68,25 @@ function AuthorizationForm() {
             {/* заголовок и аватарка */}
             <Logo url={Avatar} className={style.Avatar} />
             <Row>
-                <Title>Log in</Title>
+                <Title>Password</Title>
+            </Row>
+            <Row>
+                <Title>Reset</Title>
             </Row>
 
             {/* поля ввода ника и его ошибки */}
             <div className="Content__right__Input_group">
-                <MSG type={MSGtype}>{Login_Error_Type}</MSG>
-                <CHPInput value={Login} name="Login" type='text' placeholder={"Login is your email"} maxLength={40} onChange={(event) => setLogin(event.target.value)} />
-            </div>
-
-            {/* поля ввода пароля и его ошибки */}
-            <div className="Content__right__Input_group">
-                <MSG type={MSGtype}>{Password_Error_Type}</MSG>
-                <CHPInput value={Password} name="Password" type='password' placeholder={"Password"} maxLength={32} onChange={(event) => setPassword(event.target.value)} />
+                <MSG type={MSGtype}>{Email_Error_Type}</MSG>
+                <CHPInput value={Email} name="Email" type='text' placeholder={"Write here your Email"} maxLength={40} onChange={(event) => setEmail(event.target.value)} />
             </div>
 
             {/* кнопка */}
-            <CHPButton className={style.MainButton} value={"Log in"} type="button" onClick={DataCheck} />
+            <CHPButton className={style.MainButton} value={"Send reset mail"} type="button" onClick={DataCheck} />
 
 
             <Link to="/registration"><CHPButton className={style.RerouteButton} value={"Registrate"} type="button" /></Link>
-            <Link to="/password-reset"><CHPButton className={style.ResetButton} value={"Forget password"} type="button" /></Link>
+            <Link to="/authorization"><CHPButton className={style.RerouteButton} value={"Log In"} type="button" /></Link>
+
 
 
         </Container>
@@ -108,4 +95,4 @@ function AuthorizationForm() {
 }
 
 
-export default observer(AuthorizationForm);
+export default observer(ResetForm);

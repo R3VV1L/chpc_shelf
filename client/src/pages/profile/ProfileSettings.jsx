@@ -49,7 +49,14 @@ function ProfileSettings() {
 
     }
 
+    async function Reset() {
+        await store.ResetPassword(store.user.email)
+        console.log(store?.errors?.response?.data?.message);
+        setMSGtype('success')
+        setOldPassword_Error_Type(store?.errors?.response?.data?.message)
 
+
+    }
 
 
     return (
@@ -85,6 +92,10 @@ function ProfileSettings() {
                     <Row className='ProfileSettings__Row_password_BTN'>
                         <CHPButton value={"Change password"} type="button" onClick={PasswordChange} />
                     </Row>
+
+                    <CHPButton value={"Reset password"} type="button" onClick={Reset} />
+                    <div>!Внимание,в случае сброса пароля Вам на почту будет отправлено письмо со ссылкой.</div>
+                    <div>При переходе по ссылке в качестве нового пароля будет установлена ваша почта!</div>
 
 
 

@@ -87,6 +87,7 @@ export default class Store {
   }
 
   async ChangePassword(email, OldPassword, NewPassword) {
+    // this.setLoading(true)
     this.setErrors(undefined)
     try {
       const response = await UserService.ChangePassword(email, OldPassword, NewPassword)
@@ -95,6 +96,24 @@ export default class Store {
     } catch (err) {
       this.setErrors(err)
       console.error(err.response?.data?.message)
+    }
+    finally {
+      this.setLoading(false)
+    }
+  }
+  async ResetPassword(email) {
+    // this.setLoading(true)
+    this.setErrors(undefined)
+    try {
+      const response = await UserService.ResetPassword(email)
+      console.log(response)
+
+    } catch (err) {
+      this.setErrors(err)
+      console.error(err.response?.data?.message)
+    }
+    finally {
+      this.setLoading(false)
     }
   }
 }

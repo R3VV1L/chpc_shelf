@@ -35,10 +35,23 @@ router.get('/activate/:link', UserController.activate)
 router.post('/login', UserController.login)
 
 /**
- * TODO: функция активации пользователя
+ * TODO: функция смены пароля пользователя
  */
 
 router.post('/changepassword', UserController.ChangePassword)
+
+
+/**
+ * TODO: функция сброса пароля пользователя
+ */
+
+router.post('/resetpassword', UserController.ResetPassword)
+
+/**
+ * TODO: функция подтверждения сброса пароля пользователя
+ */
+
+router.get('/reset/:link', UserController.Reset)
 
 /**
  * TODO: выход из аккаунта

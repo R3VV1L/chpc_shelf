@@ -70,6 +70,35 @@ class UserController {
     }
   }
 
+  async ResetPassword(req, res, next) {
+    try {
+
+      const { email } = req.body
+
+      const userData = await userService.ResetPassword(
+        email
+      )
+
+      return res.json(userData)
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  async Reset(req, res, next) {
+    try {
+      const activationLink = req.params.link
+      await userService.Reset(activationLink)
+
+
+      return res.redirect(process.env.CLIENT_URL)
+
+
+    } catch (err) {
+      next(err)
+    }
+  }
+
   async logout(req, res, next) {
     try {
       const { refreshToken } = req.cookies

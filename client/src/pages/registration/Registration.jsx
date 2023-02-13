@@ -7,6 +7,7 @@ import ProjectInfo from '../../components/ProjectInfo';
 import Divider from '../../components/UI/Divider';
 import RegistrationForm from '../../components/RegistrationForm';
 import AuthorizationForm from '../../components/AuthorizationForm';
+import ResetForm from '../../components/ResetForm';
 import MainForm from '../main/MainForm';
 import About from '../about/About';
 import { Context } from '../../main';
@@ -32,6 +33,7 @@ function Registration() {
                                 <Route path='/' element={<RegistrationForm />}></Route>
                                 <Route path="/registration" element={<RegistrationForm />}></Route>
                                 <Route path="/authorization" element={<AuthorizationForm />}></Route>
+                                <Route path="/password-reset" element={<ResetForm />}></Route>
                             </Routes>
                         </Background>
                     </Col>

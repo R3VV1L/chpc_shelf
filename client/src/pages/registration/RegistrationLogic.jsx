@@ -1,8 +1,8 @@
 /* шаблоны для валидации */
 var format_nickname = /[ `!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/;// valid _
-var format_email = /[ `!#$%^&*()+\=\[\]{};':"\\|,<>\/?~]/;// valid . @ _
+var format_email = /[ `!#$%^&*()+\=\[\]{};':"\\|,<>\/?~]/;// valid . @ _ -
 var format_must_email = /[@]/;
-var format_password = /[ `!@#$%^&*()+\-=\[\]{};':"\\|,<>\/?~]/;// valid _ .
+var format_password = /[ `!#$%^&*()+\=\[\]{};':"\\|,<>\/?~]/;// valid _ . @ -
 /* проверка валидации никнейма */
 export function NicknameCheck(Nickname) {
     if (Nickname === "" || Nickname === " ") {

@@ -6,6 +6,7 @@ import tokenService from './token-service.js'
 import { UserDto } from '../dtos/user-dto.js'
 import ApiError from '../exceptions/api-error.js'
 import roleService from './role-service.js'
+import { where } from 'sequelize'
 
 class UserService {
   async registration(email, nickname, password) {
@@ -122,8 +123,36 @@ class UserService {
     // )
   }
 
+  async ResetPassword(email) {
+    const user = await UserModel.findOne({ where: { email: email } })
+    if (!user) {
+      throw ApiError.BedRequest('Пользователь с таким email не найден')
+    }
+
+    if (!user.isActivated) {
+      throw ApiError.BedRequest(
+        'Сперва активируйте аккаунт',
+      )
+    }
 
 
+    try {
+      const ResetLink = uuidv4()
+      const result = await UserModel.update(
+        { activationLink: ResetLink },
+        { where: { email: email } }
+      )
+      await mailService.sendResetMail(
+        email,
+        `${process.env.API_URL}/api/reset/${ResetLink}`,
+      )
+      throw ApiError.BedRequest(
+        'Перейдите в свой почтовый ящик',
+      )
+    } catch (err) {
+      throw ApiError.BedRequest(err)
+    }
+  }
 
 
   async logout(refreshToken) {
@@ -144,6 +173,40 @@ class UserService {
 
     user.isActivated = true
     await user.save()
+  }
+
+
+  async Reset(activationLink) {
+    const user = await UserModel.findOne({
+      where: {
+        activationLink,
+      },
+    })
+
+    if (!user) {
+      throw ApiError.BedRequest('Неккоректная ссылка восстановления')
+    }
+    const email = user.email
+    const hashPassword = await bcrypt.hash(user.email, 3)
+    const newLink = uuidv4()
+    const result = await UserModel.update(
+      { password: hashPassword },
+      // { activationLink: newLink },
+      { where: { email: email } }
+    )
+    const result1 = await UserModel.update(
+      // { password: hashPassword },
+      { activationLink: newLink },
+      { where: { email: email } }
+    )
+    // const result = await UserModel.update
+    //   (
+    //     { password: hashPassword },
+    //     { activationLink: newLink },
+    //     { where: { email } }
+    //   )
+
+
   }
 
   async refresh(refreshToken) {
