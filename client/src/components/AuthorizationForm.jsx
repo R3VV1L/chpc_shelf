@@ -99,7 +99,7 @@ function AuthorizationForm() {
 
 
             <Link to="/registration"><CHPButton className={style.RerouteButton} value={"Registrate"} type="button" /></Link>
-            <Link to="/password-reset"><CHPButton className={style.ResetButton} value={"Forget password"} type="button" /></Link>
+            <Link to="/login-help"><CHPButton className={style.ResetButton} value={"Login problem"} type="button" /></Link>
 
 
         </Container>

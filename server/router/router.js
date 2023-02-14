@@ -54,6 +54,12 @@ router.post('/resetpassword', UserController.ResetPassword)
 router.get('/reset/:link', UserController.Reset)
 
 /**
+ * TODO: функция повторной отправки письма активации
+ */
+
+router.post('/repeatactivate', UserController.RepeatActivate)
+
+/**
  * TODO: выход из аккаунта
  */
 

@@ -116,4 +116,20 @@ export default class Store {
       this.setLoading(false)
     }
   }
+
+  async RepeatActivate(email) {
+    // this.setLoading(true)
+    this.setErrors(undefined)
+    try {
+      const response = await UserService.RepeatActivate(email)
+      console.log(response)
+
+    } catch (err) {
+      this.setErrors(err)
+      console.error(err.response?.data?.message)
+    }
+    finally {
+      this.setLoading(false)
+    }
+  }
 }

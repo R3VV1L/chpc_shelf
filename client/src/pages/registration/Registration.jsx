@@ -33,7 +33,7 @@ function Registration() {
                                 <Route path='/' element={<RegistrationForm />}></Route>
                                 <Route path="/registration" element={<RegistrationForm />}></Route>
                                 <Route path="/authorization" element={<AuthorizationForm />}></Route>
-                                <Route path="/password-reset" element={<ResetForm />}></Route>
+                                <Route path="/login-help" element={<ResetForm />}></Route>
                             </Routes>
                         </Background>
                     </Col>

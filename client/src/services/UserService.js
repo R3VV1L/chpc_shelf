@@ -7,6 +7,9 @@ export default class UserService {
     static async ResetPassword(email) {
         return api.post('/resetpassword', { email })
     }
+    static async RepeatActivate(email) {
+        return api.post('/repeatactivate', { email })
+    }
 
 }
 

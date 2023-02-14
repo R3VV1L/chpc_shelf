@@ -233,6 +233,27 @@ class UserService {
     }
   }
 
+  async RepeatActivate(email) {
+    const user = await UserModel.findOne({ where: { email: email } })
+    if (!user) {
+      throw ApiError.BedRequest('Пользователь с таким email не найден')
+    }
+
+    try {
+      const activationLink = user.activationLink
+
+      await mailService.sendActivationMail(
+        email,
+        `${process.env.API_URL}/api/activate/${activationLink}`,
+      )
+      throw ApiError.BedRequest(
+        'Перейдите в свой почтовый ящик',
+      )
+    } catch (err) {
+      throw ApiError.BedRequest(err)
+    }
+  }
+
   async getAllUsers() {
     const users = await UserModel.findAll()
     return users

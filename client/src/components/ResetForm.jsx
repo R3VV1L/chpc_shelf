@@ -25,17 +25,19 @@ function ResetForm() {
     }
     /*Состояния для хранения значений полей ввода */
     const [Email, setEmail] = useState("");
+    const [AEmail, setAEmail] = useState("");
 
 
     /* Наполнение ошибок полей ввода */
     const [Email_Error_Type, setEmail_Error_Type] = useState("");
+    const [AEmail_Error_Type, setAEmail_Error_Type] = useState("");
 
 
     const [MSGtype, setMSGtype] = useState("error");
     /* массив для хранения кодов ошибок полей */
 
 
-    function DataCheck() {
+    function DataCheckReset() {
         setMSGtype("error")
         /* заполнение массива значениями ошибок */
 
@@ -61,17 +63,37 @@ function ResetForm() {
 
     }
 
+    function DataCheckActivation() {
+        setMSGtype("error")
+        /* заполнение массива значениями ошибок */
 
+
+        /* проверка поля Login на тип ошибки и изменение его состояния */
+
+        setAEmail_Error_Type(EmailCheck(AEmail));
+        /* проверка поля Password на тип ошибки и изменение его состояния */
+
+        /* проверка всех полей на ошибки и обнуление из состояния в случае их отсутствия */
+        if (EmailCheck(AEmail) === "") {
+            setAEmail_Error_Type("");
+            async function response() {
+                await store.RepeatActivate(AEmail)
+                console.log(store?.errors?.response?.data?.message);
+                setMSGtype('success')
+                setAEmail_Error_Type(store?.errors?.response?.data?.message)
+            }
+
+            response()
+        }
+
+
+    }
     /* сам рендер */
     return (
         <Container className='Content Content__right'>
             {/* заголовок и аватарка */}
-            <Logo url={Avatar} className={style.Avatar} />
             <Row>
-                <Title>Password</Title>
-            </Row>
-            <Row>
-                <Title>Reset</Title>
+                <Title>Password reset</Title>
             </Row>
 
             {/* поля ввода ника и его ошибки */}
@@ -81,8 +103,17 @@ function ResetForm() {
             </div>
 
             {/* кнопка */}
-            <CHPButton className={style.MainButton} value={"Send reset mail"} type="button" onClick={DataCheck} />
+            <CHPButton className={style.MainButton} value={"Send reset mail"} type="button" onClick={DataCheckReset} />
+            <Row>
+                <Title>Activation</Title>
+            </Row>
+            <div className="Content__right__Input_group">
+                <MSG type={MSGtype}>{AEmail_Error_Type}</MSG>
+                <CHPInput value={AEmail} name="AEmail" type='text' placeholder={"Write here your Email"} maxLength={40} onChange={(event) => setAEmail(event.target.value)} />
+            </div>
 
+            {/* кнопка */}
+            <CHPButton className={style.MainButton} value={"Send activation mail"} type="button" onClick={DataCheckActivation} />
 
             <Link to="/registration"><CHPButton className={style.RerouteButton} value={"Registrate"} type="button" /></Link>
             <Link to="/authorization"><CHPButton className={style.RerouteButton} value={"Log In"} type="button" /></Link>

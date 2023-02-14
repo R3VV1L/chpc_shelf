@@ -135,6 +135,15 @@ class UserController {
       next(err)
     }
   }
-}
 
+  async RepeatActivate(req, res, next) {
+    try {
+      const { email } = req.body
+      await userService.RepeatActivate(email)
+
+    } catch (err) {
+      next(err)
+    }
+  }
+}
 export default new UserController()
